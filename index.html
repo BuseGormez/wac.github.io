@@ -1,1 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Client embedding WAC</title>
+    <base href=".">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://agent.gatekeeper.nuance.eu/web-console/assets/env.js"></script>
+    <script src="https://agent.gatekeeper.nuance.eu/web-console/runtime.js" type="module"></script>
+    <script src="https://agent.gatekeeper.nuance.eu/web-console/polyfills.js" type="module"></script>
+    <script src="https://agent.gatekeeper.nuance.eu/web-console/main.js" type="module"></script>
+    <link rel="stylesheet" href="https://agent.gatekeeper.nuance.eu/web-console/styles.css">
+    <style>
+        body {
+            background-color: #4B0082;
+            color: white;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header, .main-content {
+            margin: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            width: calc(100% - 40px);
+            max-width: 800px;
+        }
+        header {
+            text-align: center;
+        }
+        .footer-content {
+            margin-top: auto;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: auto;
+            max-width: 300px;
+        }
+    </style>
+    <script type="text/javascript">
+        function setAuthConfig() {
+            wacProxy.setAuthConfig({
+                clientId: v2_8fdd4386-cf56-4607-a8ae-b1f9f590e992,
+                redirectUri: "https://contactcenters.github.io/wac.github.io/login",
+                silentRefreshUri: "https://contactcenters.github.io/wac.github.io/login/silent-refresh.html"
+            });
+        }
+
+        window.addEventListener("message", (event) => {
+            if (event.origin !== window.location.origin) {
+                console.warn("Got unexpected message from somewhere else:", event.origin);
+                return;
+            }
+    
+            console.log("Got message likely from wac proxy: ", event.data);
+            if (event.data === "wacProxyReady") {
+                setAuthConfig();
+            }
+
+        });
+
+        function handleAuthCallback() {
+            const params = new URLSearchParams(window.location.search);
+            const queryParams = {};
+            params.forEach((value, key) => {
+                queryParams[key] = value;
+            });
+            wacProxy.handleAuthCallback(queryParams);
+        }
+
+        if (window.location.pathname == 'https://contactcenters.github.io/wac.github.io/') {
+            handleAuthCallback();
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="main-content">
+        <h1>Welcome to Web Agent Console Spike Page For Voice Biometrics</h1>
+        <p>This is a test page with content positioned at the bottom right corner.</p>
+    </div>
+    <div class="footer-content">
+        <h1>Footer Content</h1>
+        <p>This is footer content at the bottom right corner.</p>
+    </div>
+
+    <div>
+        <h1>Client App</h1>
+        <app-root-wac></app-root-wac>
+    </div>
+</body>
+
+</html>
