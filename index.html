@@ -60,10 +60,12 @@
                 console.warn("Got unexpected message from somewhere else:", event.origin);
                 return;
             }
+    
             console.log("Got message likely from wac proxy: ", event.data);
             if (event.data === "wacProxyReady") {
                 setAuthConfig();
             }
+
         });
 
         function handleAuthCallback() {
@@ -77,6 +79,14 @@
 
         if (window.location.pathname === '/wac-login') {
             handleAuthCallback();
+        }
+        function setAuthConfig() {
+            wacProxy.setAuthConfig(
+                {
+                    clientId:v2_8fdd4386-cf56-4607-a8ae-b1f9f590e992,
+                    reditectUri: "https://contactcenters.github.io/wac.github.io/login",
+                    silentRefreshUri: "https://contactcenters.github.io/wac.github.io/login/silent-refresh.html"
+                })
         }
     </script>
 </head>
