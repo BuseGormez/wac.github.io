@@ -47,13 +47,22 @@
         }
     </style>
     <script type="text/javascript">
-        function setAuthConfig() {
+               function setAuthConfig() {
             wacProxy.setAuthConfig({
-                clientId: v2_8fdd4386-cf56-4607-a8ae-b1f9f590e992,
-                redirectUri: "https://contactcenters.github.io/wac.github.io/login",
-                silentRefreshUri: "https://contactcenters.github.io/wac.github.io/login/silent-refresh.html"
+                clientId: "v2_8fdd4386-cf56-4607-a8ae-b1f9f590e992",
+                redirectUri: "",
+                silentRefreshUri: "/login/silent-refresh.html"
             });
         }
+        
+        wacProxy.zone.run( () => {
+          wacProxy.setAuthConfig(
+            {
+              clientId: authConfig.clientId,
+              redirectUri: authConfig.redirectUri,
+              silentRefreshUri: authConfig.silentRefreshUri
+            });
+        });
 
         window.addEventListener("message", (event) => {
             if (event.origin !== window.location.origin) {
