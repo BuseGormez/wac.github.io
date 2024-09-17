@@ -54,15 +54,6 @@
                 silentRefreshUri: "/login/silent-refresh.html"
             });
         }
-        
-        wacProxy.zone.run( () => {
-          wacProxy.setAuthConfig(
-            {
-              clientId: authConfig.clientId,
-              redirectUri: authConfig.redirectUri,
-              silentRefreshUri: authConfig.silentRefreshUri
-            });
-        });
 
         window.addEventListener("message", (event) => {
             if (event.origin !== window.location.origin) {
