@@ -49,8 +49,8 @@
     </style>
     <script type="text/javascript">
 
-        wacProxy.zone.run( () => {
-          wacProxy.login(myTenant,myExtension);
+        window.wacProxy.zone.run( () => {
+          window.wacProxy.login(myTenant,myExtension);
         });
 
         
@@ -70,7 +70,7 @@
 
         
         function setAuthConfig() {
-            wacProxy.setAuthConfig({
+            window.wacProxy.setAuthConfig({
                 clientId: "v2_8fdd4386-cf56-4607-a8ae-b1f9f590e992",
                 redirectUri: "",
                 silentRefreshUri: "/login/silent-refresh.html"
