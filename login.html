@@ -50,19 +50,7 @@
     <script type="text/javascript">
 
 
-        wacProxy.zone.run( () => {
-          wacProxy.setAuthConfig(
-            {
-              clientId: authConfig.clientId,
-              redirectUri: authConfig.redirectUri,
-              silentRefreshUri: authConfig.silentRefreshUri
-            });
-        });
-
-       wacProxy.zone.run( () => {
-          wacProxy.login(myTenant,myExtension);
-        });
-
+      
         
         window.addEventListener("message", (event) => {
             if (event.origin !== window.location.origin) {
@@ -75,6 +63,19 @@
                 setAuthConfig();
             }
 
+        });
+        
+          wacProxy.zone.run( () => {
+          wacProxy.setAuthConfig(
+            {
+              clientId: authConfig.clientId,
+              redirectUri: authConfig.redirectUri,
+              silentRefreshUri: authConfig.silentRefreshUri
+            });
+        });
+
+       wacProxy.zone.run( () => {
+          wacProxy.login(myTenant,myExtension);
         });
 
 
