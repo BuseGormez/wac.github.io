@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="refresh" content="0; URL=https://contactcenters.github.io/wac.github.io/login/silent-refresh.html" />
+    <meta http-equiv="refresh" content="0; URL=https://agent.gatekeeper.nuance.eu/web-console/silent-refresh.html" />
     <title>Client embedding WAC</title>
     <base href=".">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -48,16 +48,12 @@
         }
     </style>
     <script type="text/javascript">
-        function setAuthConfig() {
-            wacProxy.setAuthConfig({
-                clientId: "v2_8fdd4386-cf56-4607-a8ae-b1f9f590e992",
-                redirectUri: "",
-                silentRefreshUri: "/login/silent-refresh.html"
-            });
-        }
+
+        wacProxy.zone.run( () => {
+          wacProxy.login(myTenant,myExtension);
+        });
+
         
-
-
         window.addEventListener("message", (event) => {
             if (event.origin !== window.location.origin) {
                 console.warn("Got unexpected message from somewhere else:", event.origin);
@@ -70,6 +66,17 @@
             }
 
         });
+
+
+        
+        function setAuthConfig() {
+            wacProxy.setAuthConfig({
+                clientId: "v2_8fdd4386-cf56-4607-a8ae-b1f9f590e992",
+                redirectUri: "",
+                silentRefreshUri: "/login/silent-refresh.html"
+            });
+        }
+        
 
         function handleAuthCallback() {
             const params = new URLSearchParams(window.location.search);
