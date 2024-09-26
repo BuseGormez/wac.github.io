@@ -58,9 +58,9 @@
             console.log("Got message likely from wac proxy: ", event.data);
             if (event.data === "wacProxyReady") {
                 setAuthConfig();
-                 window.wacProxy.zone.run( () => {
-                  window.wacProxy.login(myTenant,myExtension);
-                });
+                var myExtension = "buse.gormez@rabobank.nl";
+                window.wacProxy.login("rabobank",myExtension);
+
             }
             
 
