@@ -48,10 +48,7 @@
         }
     </style>
     <script type="text/javascript">
-
-
-      
-        
+  
         window.addEventListener("message", (event) => {
             if (event.origin !== window.location.origin) {
                 console.warn("Got unexpected message from somewhere else:", event.origin);
@@ -61,33 +58,25 @@
             console.log("Got message likely from wac proxy: ", event.data);
             if (event.data === "wacProxyReady") {
                 setAuthConfig();
-            }
+                var myExtension = "buse.gormez@rabobank.nl";
+                window.wacProxy.login("rabobank",myExtension);
 
-        });
-        
-       window.wacProxy.zone.run( () => {
-          wacProxy.login(myTenant,myExtension);
+            }
+            
+
         });
 
 
         
         function setAuthConfig() {
+            window.wacProxy.zone.run( () => {
             window.wacProxy.setAuthConfig({
                 clientId: "v2_8fdd4386-cf56-4607-a8ae-b1f9f590e992",
                 redirectUri: "",
                 silentRefreshUri: "/login/silent-refresh.html"
             });
-        }
-
-
-         window.wacProxy.zone.run( () => {
-          window.wacProxy.setAuthConfig(
-            {
-              clientId: authConfig.clientId,
-              redirectUri: authConfig.redirectUri,
-              silentRefreshUri: authConfig.silentRefreshUri
-            });
         });
+        }
         
 
         function handleAuthCallback() {
