@@ -65,15 +65,6 @@
 
         });
         
-          wacProxy.zone.run( () => {
-          wacProxy.setAuthConfig(
-            {
-              clientId: authConfig.clientId,
-              redirectUri: authConfig.redirectUri,
-              silentRefreshUri: authConfig.silentRefreshUri
-            });
-        });
-
        wacProxy.zone.run( () => {
           wacProxy.login(myTenant,myExtension);
         });
@@ -87,6 +78,16 @@
                 silentRefreshUri: "/login/silent-refresh.html"
             });
         }
+
+          wacProxy.zone.run( () => {
+          wacProxy.setAuthConfig(
+            {
+              clientId: authConfig.clientId,
+              redirectUri: authConfig.redirectUri,
+              silentRefreshUri: authConfig.silentRefreshUri
+            });
+        });
+
         
 
         function handleAuthCallback() {
