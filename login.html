@@ -80,13 +80,14 @@
         }
 
 
+         window.wacProxy.zone.run( () => {
           window.wacProxy.setAuthConfig(
             {
               clientId: authConfig.clientId,
               redirectUri: authConfig.redirectUri,
               silentRefreshUri: authConfig.silentRefreshUri
             });
-
+        });
         
 
         function handleAuthCallback() {
