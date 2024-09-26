@@ -59,7 +59,7 @@
             if (event.data === "wacProxyReady") {
                 setAuthConfig();
                 var myExtension = "buse.gormez@rabobank.nl";
-                window.wacProxy.login("rabobank",myExtension);
+                wacProxy.login("rabobank",myExtension);
 
             }
             
@@ -69,8 +69,8 @@
 
         
         function setAuthConfig() {
-            window.wacProxy.zone.run( () => {
-            window.wacProxy.setAuthConfig({
+            wacProxy.zone.run( () => {
+            wacProxy.setAuthConfig({
                 clientId: "v2_8fdd4386-cf56-4607-a8ae-b1f9f590e992",
                 redirectUri: "",
                 silentRefreshUri: "/login/silent-refresh.html"
