@@ -65,28 +65,27 @@
 
         });
         
-       wacProxy.zone.run( () => {
+       window.wacProxy.zone.run( () => {
           wacProxy.login(myTenant,myExtension);
         });
 
 
         
         function setAuthConfig() {
-            wacProxy.setAuthConfig({
+            window.wacProxy.setAuthConfig({
                 clientId: "v2_8fdd4386-cf56-4607-a8ae-b1f9f590e992",
                 redirectUri: "",
                 silentRefreshUri: "/login/silent-refresh.html"
             });
         }
 
-          wacProxy.zone.run( () => {
-          wacProxy.setAuthConfig(
+
+          window.wacProxy.setAuthConfig(
             {
               clientId: authConfig.clientId,
               redirectUri: authConfig.redirectUri,
               silentRefreshUri: authConfig.silentRefreshUri
             });
-        });
 
         
 
